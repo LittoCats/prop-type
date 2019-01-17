@@ -12,7 +12,9 @@ import {
 
   arrayOfType,
   oneOf,
-  oneOfType
+  oneOfType,
+
+  match
 } from '.';
 
 
@@ -109,6 +111,10 @@ describe('Test arrayOfType', ()=> {
 
 })
 
+describe('Test match', ()=> {
 
+  const extract = match(/^189\d{8}$/);
 
-
+  test('pass if phonenum with prefix 189', ()=> expect(extract('', '18928842273')).toBe('18928842273'));
+  test('throw if not phonenum with prefix 189', ()=> expect(()=> extract('', 15928842273)).toThrow());
+})

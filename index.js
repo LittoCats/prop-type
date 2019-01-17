@@ -136,6 +136,22 @@ const arrayOfType = function (extractor) {
   }
 }
 
+const match = function (regex) {
+  
+  return createChainableExtractor(extract);
+
+  function extract(isRequired, prop, value) {
+    
+    if (!isRequired && value === undefined) return undefined;
+
+    if (regex.test(value)) return value;
+
+    let error = new Error(`expect match ${regex}, but received ${value}`);
+    error.propPath = [prop];
+    throw error;
+  }
+}
+
 
 export {
   bool,
@@ -148,5 +164,7 @@ export {
 
   arrayOfType,
   oneOf,
-  oneOfType
+  oneOfType,
+
+  match
 }
