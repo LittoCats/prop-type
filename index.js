@@ -110,6 +110,7 @@ const shape = function (definination) {
     }
     
     if (error) {
+      if (!Array.isArray(error.propPath)) error.propPath = [];
       error.propPath.unshift(prop);
       throw error;
     }
@@ -129,9 +130,10 @@ const arrayOfType = function (extractor) {
 
     try {
       return values.map((value, index)=> extractor.required(index, value));
-    } catch(e) {
-      e.propPath.unshift(prop);
-      throw e;
+    } catch(error) {
+      if (!Array.isArray(error.propPath)) error.propPath = [];
+      error.propPath.unshift(prop);
+      throw error;
     }
   }
 }
