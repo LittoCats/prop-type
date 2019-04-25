@@ -20,8 +20,10 @@ import {
 
 describe('Test primitive type', ()=> {
   describe('Test bool', ()=> {
-    test('bool true', ()=> expect(bool('', true)).toBe(true));
-    test('bool true', ()=> expect(bool('', false)).toBe(false));
+    test('bool true toBe true', ()=> expect(bool('', true)).toBe(true));
+    test('bool false toBe false', ()=> expect(bool('', false)).toBe(false));
+    test('bool throw if undefined', ()=> expect(bool.bind(null, '', undefined)).toThrow());
+    test('bool throw if null', ()=> expect(bool.bind(null, '', null)).toThrow());
     test('bool throw if number', ()=> expect(bool.bind(null, '', 1)).toThrow());
     test('bool throw if string', ()=> expect(bool.bind(null, '', '')).toThrow());
     test('bool throw if object', ()=> expect(bool.bind(null, '', {})).toThrow());

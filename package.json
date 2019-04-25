@@ -1,15 +1,17 @@
 {
   "name": "prop-type",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "",
-  "main": "index.js",
+  "main": "prop-type.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "coffee -cw ./*.coffee"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
+    "coffee-script": "^1.12.7",
     "jest": "^23.6.0"
   }
 }
