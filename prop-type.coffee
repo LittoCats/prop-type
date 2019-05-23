@@ -36,25 +36,25 @@ exports.oneOf = oneOf = (validValues)->
     return undefined if not isRequired and value is undefined
     return value if value in validValues
 
-    error = new Error("expect oneOf [#{validValues.join(', ')}], but recieved #{value}");
+    error = new Error("expect oneOf [#{validValues.join(', ')}], but recieved #{value}")
     error.propPath = [prop]
     throw error
 
   return createChainableExtractor extract
 
-exports.onceOfType = onceOfType = (extractors)->
+exports.oneOfType = oneOfType = (extractors)->
   extract = (isRequired, prop, value)->
     return undefined if not isRequired and value is undefined
-    for extractor of extractors
+    for extractor in extractors
       try
         result = extractor prop, value
-        error = undefined;
+        error = undefined
         break
       catch e
         error = e
         continue
     throw error if error
-    return result;
+    return result
 
   return createChainableExtractor extract
 
@@ -80,7 +80,7 @@ exports.arrayOfType = arrayOfType = (extractor)->
 
     values = array.required prop, values
 
-    try 
+    try
       extractor.required index, value for index, value of values
     catch error
       error.propPath = [] if not isArray error.propPath
@@ -104,7 +104,7 @@ exports.shape = shape = (definination)->
       error = e
     
     if error
-      error.propPath = [] if not Array.isArray error.propPath
+      error.propPath = [] if not isArray error.propPath
       error.propPath.unshift prop
       throw error
 

@@ -5,7 +5,8 @@
   "main": "prop-type.js",
   "scripts": {
     "test": "jest",
-    "dev": "coffee -cw ./*.coffee"
+    "build": "coffee -c ./*.coffee",
+    "dev":  "npm run build -- -w"
   },
   "author": "",
   "license": "ISC",
